@@ -1,6 +1,6 @@
 %define name weechat
-%define version 0.2.3
-%define release %mkrel 2
+%define version 0.2.5
+%define release %mkrel 1
 
 %define weegtk 0
 %define weeqt 0
@@ -194,9 +194,7 @@ rm -rf $RPM_BUILD_ROOT
 %_mandir/man1/weechat*
 %dir %_prefix/lib*/%name
 %dir %_prefix/lib*/%name/plugins
-#%_infodir/*
 %doc FAQ.fr FAQ README NEWS ChangeLog AUTHORS BUGS TODO
-%_datadir/doc/%name
 
 %files perl
 %defattr(-,root,root)
@@ -235,5 +233,3 @@ rm -rf $RPM_BUILD_ROOT
 %_bindir/%name-qt
 %doc FAQ.fr FAQ README NEWS ChangeLog AUTHORS BUGS TODO
 %endif
-
-
