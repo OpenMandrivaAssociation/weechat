@@ -22,7 +22,6 @@ Patch1: weechat_docbookpath.patch
 License: GPL
 Group: Networking/IRC
 Url: http://weechat.flashtux.org/
-BuildRoot: %{_tmppath}/%{name}-buildroot
 
 BuildRequires: ncurses-devel
 BuildRequires: perl-devel
