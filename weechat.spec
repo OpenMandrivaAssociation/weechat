@@ -1,6 +1,6 @@
 %define name weechat
 %define version 0.2.6
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define weegtk 0
 %define weeqt 0
