@@ -1,6 +1,6 @@
 %define name weechat
 %define version 0.2.6
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define weegtk 0
 %define weeqt 0
@@ -25,6 +25,8 @@ Url: http://weechat.flashtux.org/
 BuildRoot: %{_tmppath}/%{name}-buildroot
 
 BuildRequires: ncurses-devel
+# next need for utf8 support
+BuildRequires: ncursesw-devel
 BuildRequires: perl-devel
 # Ruby & Python are really needed for the build, tks lbd
 BuildRequires: python-devel
