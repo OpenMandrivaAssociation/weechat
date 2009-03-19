@@ -1,6 +1,6 @@
 %define name weechat
-%define version 0.2.6
-%define release %mkrel 5
+%define version 0.2.6.1
+%define release %mkrel 1
 
 %define weegtk 0
 %define weeqt 0
@@ -156,6 +156,8 @@ This package allow weechat to use aspell
 #%patch1 -p1
 
 %build
+autoreconf -fi
+libtoolize 
 %configure  --with-doc-xsl-prefix=%_datadir/sgml/docbook/xsl-stylesheets/ \
 %if %weegtk
     --enable-gtk \
