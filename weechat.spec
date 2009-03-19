@@ -34,10 +34,9 @@ BuildRequires: ruby-devel
 Buildrequires: lua-devel
 BuildRequires: aspell-devel
 BuildRequires: gettext-devel
-
-%if %weegtk
+BuildRequires: libgnutls-devel
 BuildRequires: libgtk+2-devel
-%endif
+
 %if %weeqt
 BuildRequires: qt3-devel
 %endif
@@ -162,9 +161,13 @@ libtoolize
 %configure  --with-doc-xsl-prefix=%_datadir/sgml/docbook/xsl-stylesheets/ \
 %if %weegtk
     --enable-gtk \
+%else
+   --disable-gtk \
 %endif
 %if %weeqt
     --enable-qt \
+%else
+    --disable-qt \
 %endif
     --enable-perl \
     --enable-python \
