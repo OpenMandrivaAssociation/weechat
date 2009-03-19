@@ -33,6 +33,7 @@ BuildRequires: python-devel
 BuildRequires: ruby-devel
 Buildrequires: lua-devel
 BuildRequires: aspell-devel
+BuildRequires: gettext-devel
 
 %if %weegtk
 BuildRequires: libgtk+2-devel
