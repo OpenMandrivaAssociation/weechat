@@ -1,5 +1,5 @@
 %define name weechat
-%define version 0.2.6.1
+%define version 0.2.6.2
 %define release %mkrel 1
 
 %define weegtk 0
@@ -15,10 +15,7 @@ Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: http://weechat.flashtux.org/download/%{name}-%{version}.tar.bz2
-# Mandriva nicely use -D_FORTIFY_SOURCE=2 wich cause in stdio a #define printf
-# there is no simple way to disable this in optflags
-# this patch rename printf to printf_client to avoid the issue
-Patch1: weechat_docbookpath.patch
+Patch2: weechat-0.2.6.1-gnutls-2.8.patch
 License: GPL
 Group: Networking/IRC
 Url: http://weechat.flashtux.org/
@@ -153,12 +150,11 @@ This package allow weechat to use aspell
 
 %prep
 %setup -q
-#%patch1 -p1
+%patch2 -p0
 
 %build
 autoreconf -fi
-libtoolize 
-%configure  --with-doc-xsl-prefix=%_datadir/sgml/docbook/xsl-stylesheets/ \
+%configure2_5x  --with-doc-xsl-prefix=%_datadir/sgml/docbook/xsl-stylesheets/ \
 %if %weegtk
     --enable-gtk \
 %else
@@ -176,6 +172,7 @@ libtoolize
 %make
 
 %install
+rm -fr %buildroot
 %makeinstall_std
 
 (
@@ -186,7 +183,7 @@ ln -s %name-curses %name
 %find_lang %name
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %buildroot
 
 %post
 %_install_info %{name}.info
