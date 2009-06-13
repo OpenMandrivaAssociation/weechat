@@ -1,5 +1,5 @@
 %define name weechat
-%define version 0.2.6.2
+%define version 0.2.6.3
 %define release %mkrel 1
 
 %define weegtk 0
@@ -15,7 +15,6 @@ Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: http://weechat.flashtux.org/download/%{name}-%{version}.tar.bz2
-Patch2: weechat-0.2.6.1-gnutls-2.8.patch
 License: GPL
 Group: Networking/IRC
 Url: http://weechat.flashtux.org/
@@ -150,7 +149,6 @@ This package allow weechat to use aspell
 
 %prep
 %setup -q
-%patch2 -p0
 
 %build
 autoreconf -fi
