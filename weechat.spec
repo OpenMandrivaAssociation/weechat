@@ -31,6 +31,7 @@ BuildRequires: aspell-devel
 BuildRequires: gettext-devel
 BuildRequires: libgnutls-devel
 BuildRequires: libgtk+2-devel
+BuildRequires: tcl-devel
 
 %description
 WeeChat (Wee Enhanced Environment for Chat) is a free IRC client, fast and
