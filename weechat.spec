@@ -14,10 +14,10 @@ Summary: Wee Enhanced Environment for Chat
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: http://weechat.flashtux.org/download/%{name}-%{version}.tar.bz2
+Source0: http://www.weechat.org/files/src/%{name}-%{version}.tar.gz
 License: GPL
 Group: Networking/IRC
-Url: http://weechat.flashtux.org/
+Url: http://www.weechat.org/
 BuildRoot: %{_tmppath}/%{name}-buildroot
 
 BuildRequires: ncurses-devel
