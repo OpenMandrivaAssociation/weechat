@@ -18,6 +18,7 @@ License: GPL
 Group: Networking/IRC
 Url: http://www.weechat.org/
 BuildRoot: %{_tmppath}/%{name}-buildroot
+BuildRequires: cmake
 BuildRequires: ncurses-devel
 # next need for utf8 support
 BuildRequires: ncursesw-devel
