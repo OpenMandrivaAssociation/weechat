@@ -12,8 +12,8 @@ Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: http://www.weechat.org/files/src/%{name}-%{version}.tar.gz
-Patch0:  weechat-0.3.0-cmake-paths.patch
-Patch1:  weechat-0.3.0-cmake-pie.patch
+Patch0:  weechat-0.3.0-cmake-pie.patch
+Patch1:  weechat-0.3.0-cmake-paths.patch
 License: GPL
 Group: Networking/IRC
 Url: http://www.weechat.org/
@@ -215,8 +215,8 @@ This package contains include files and pc file for weechat.
 
 %prep
 %setup -q
-#%patch0 -p1
-#%patch1 -p1
+%patch0 -p0
+%patch1 -p0
 
 %build
 %cmake \
