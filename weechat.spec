@@ -196,9 +196,9 @@ This package allow weechat to use aspell
 
 #--------------------------------------------------------------------
 
-%package devel
-Summary: Development files for weechat
-Group: Development/Libraries
+%package  devel
+Summary:  Development files for weechat
+Group:    Development/C
 Requires: %{name} = %{version}-%{release} pkgconfig
 
 %description devel
