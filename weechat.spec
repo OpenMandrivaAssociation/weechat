@@ -4,29 +4,27 @@
 %{?_without_gtk: %{expand: %%define	weegtk 0}}
 %{?_with_gtk: %{expand: %%define	weegtk 1}}
 
-Name:		weechat
-Version:	0.3.5
-Release:	1
 Summary:	Wee Enhanced Environment for Chat
-Source0:	http://www.weechat.org/files/src/%{name}-%{version}.tar.bz2
+Name:		weechat
+Version:	0.3.9.2
+Release:	1
 License:	GPL
 Group:		Networking/IRC
 URL:		http://www.weechat.org/
+Source0:	http://www.weechat.org/files/src/%{name}-%{version}.tar.bz2
 
 BuildRequires:	cmake
-BuildRequires:	ncurses-devel
-# next need for utf8 support
-BuildRequires:	ncursesw-devel
-BuildRequires:	perl-devel
-# Ruby & Python are really needed for the build, tks lbd
-BuildRequires:	python-devel
-BuildRequires:	ruby-devel
-BuildRequires:	lua-devel
 BuildRequires:	aspell-devel
 BuildRequires:	gettext-devel
-BuildRequires:	libgnutls-devel
-BuildRequires:	libgtk+2-devel
-BuildRequires:	tcl-devel
+BuildRequires:	perl-devel
+BuildRequires:	pkgconfig(gnutls)
+BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(lua)
+BuildRequires:	pkgconfig(ncurses)
+# Ruby & Python are really needed for the build, tks lbd
+BuildRequires:	pkgconfig(python-2.7)
+BuildRequires:	pkgconfig(ruby-1.9)
+BuildRequires:	pkgconfig(tcl)
 
 %description
 WeeChat (Wee Enhanced Environment for Chat) is a free IRC client, fast and
@@ -43,14 +41,7 @@ Main features are:
 
 Install %{name}-gtk to have the gtk-gui.
 
-%post
-%_install_info %{name}.info
-
-%preun
-%_remove_install_info %{name}.info
-
 %files -f %{name}.lang
-%defattr(-,root,root)
 %{_bindir}/%{name}
 %{_bindir}/%{name}-curses
 %{_libdir}/alias.so*
@@ -83,7 +74,6 @@ Main features are:
 This package contain %{name}-gtk
 
 %files gtk
-%defattr(-,root,root)
 %{_bindir}/%{name}-gtk
 %endif
 
@@ -98,7 +88,6 @@ Requires:	%{name} = %{version}
 This package allow weechat to use perl scripts
 
 %files perl
-%defattr(-,root,root)
 %{_libdir}/perl.so*
 
 #--------------------------------------------------------------------
@@ -112,7 +101,6 @@ Requires:	%{name} = %{version}
 This package allow weechat to use python scripts
 
 %files python
-%defattr(-,root,root)
 %{_libdir}/python.so*
 
 #--------------------------------------------------------------------
@@ -126,7 +114,6 @@ Requires:	%{name} = %{version}
 This package allow weechat to use tcl scripts
 
 %files tcl
-%defattr(-,root,root)
 %{_libdir}/tcl.so*
 
 #--------------------------------------------------------------------
@@ -140,7 +127,6 @@ Requires:	%{name} = %{version}
 This package allow weechat to use ruby scripts
 
 %files ruby
-%defattr(-,root,root)
 %{_libdir}/ruby.so*
 
 #--------------------------------------------------------------------
@@ -154,7 +140,6 @@ Requires:	%{name} = %{version}
 This package allow weechat to use lua scripts
 
 %files lua
-%defattr(-,root,root)
 %{_libdir}/lua.so*
 
 #--------------------------------------------------------------------
@@ -168,7 +153,6 @@ Requires:	%{name} = %{version}
 This package allow weechat to use charset
 
 %files charset
-%defattr(-,root,root)
 %{_libdir}/charset.so*
 
 #--------------------------------------------------------------------
@@ -182,7 +166,6 @@ Requires:	%{name} = %{version}
 This package allow weechat to use aspell
 
 %files aspell
-%defattr(-,root,root)
 %{_libdir}/aspell.so*
 
 #--------------------------------------------------------------------
@@ -196,7 +179,6 @@ Requires:	%{name} = %{version}
 This package allows weechat to use an IRC proxy
 
 %files relay
-%defattr(-,root,root)
 %{_libdir}/relay.so*
 
 #--------------------------------------------------------------------
@@ -210,7 +192,6 @@ Requires:	%{name} = %{version}
 alter modifier strings with regular expression
 
 %files rmodifier
-%defattr(-,root,root)
 %{_libdir}/rmodifier.so*
 
 #--------------------------------------------------------------------
@@ -228,7 +209,6 @@ It is customizable and extensible with scripts.
 This package contains include files and pc file for weechat.
 
 %files devel
-%defattr(-,root,root)
 %{_includedir}/weechat
 %{_libdir}/pkgconfig/weechat.pc
 %{_libdir}/*a
@@ -241,9 +221,9 @@ This package contains include files and pc file for weechat.
 %build
 %configure2_5x	\
 %if %{weegtk}
-		--enable-gtk \
+	--enable-gtk \
 %else
-		--disable-gtk \
+	--disable-gtk \
 %endif
 
 %cmake
@@ -257,7 +237,4 @@ ln -s %{name}-curses %{name}
 )
 
 %find_lang %{name}
-
-%clean
-rm -rf %{buildroot}
 
