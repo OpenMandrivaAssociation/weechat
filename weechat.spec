@@ -1,205 +1,175 @@
-%define	Werror_cflags %nil
-%define	weegtk 1
+%define		name weechat
+%define 	version 0.3.9.2
+%define 	release %mkrel 1
 
-%{?_without_gtk: %{expand: %%define	weegtk 0}}
-%{?_with_gtk: %{expand: %%define	weegtk 1}}
-
-Summary:	Wee Enhanced Environment for Chat
-Name:		weechat
-Version:	0.3.9.2
-Release:	1
-License:	GPL
-Group:		Networking/IRC
-URL:		http://www.weechat.org/
+Summary:	Portable, fast, light and extensible IRC client
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
 Source0:	http://www.weechat.org/files/src/%{name}-%{version}.tar.bz2
-
-BuildRequires:	cmake
-BuildRequires:	aspell-devel
-BuildRequires:	gettext-devel
-BuildRequires:	perl-devel
-BuildRequires:	pkgconfig(gnutls)
-BuildRequires:	pkgconfig(gtk+-2.0)
-BuildRequires:	pkgconfig(lua)
-BuildRequires:	pkgconfig(ncurses)
+Patch0:		weechat-combined.patch
+License:	GPLv3
+Group: 		Networking/IRC
+Url: 		http://www.weechat.org/
+BuildRequires: 	cmake
+BuildRequires: 	pkgconfig(ncurses)
+BuildRequires:	pkgconfig(libcurl)
+# need for utf8 support
+BuildRequires: 	ncursesw-devel
+BuildRequires: 	perl-devel
 # Ruby & Python are really needed for the build, tks lbd
-BuildRequires:	pkgconfig(python-2.7)
-BuildRequires:	pkgconfig(ruby-1.9)
-BuildRequires:	pkgconfig(tcl)
+BuildRequires: 	pkgconfig(python)
+BuildRequires: 	ruby-devel
+Buildrequires: 	lua5.1-devel
+BuildRequires: 	enchant-devel
+BuildRequires: 	gettext
+BuildRequires:	docbook-style-xsl
+BuildRequires: 	pkgconfig(gnutls)
+BuildRequires:	libgcrypt-devel
+BuildRequires: 	tcl-devel
+
+Obsoletes:	%{name}-gtk
 
 %description
-WeeChat (Wee Enhanced Environment for Chat) is a free IRC client, fast and
-light, designed for many operating systems.
+WeeChat (Wee Enhanced Environment for Chat) is a fast, light and extensible
+chat client designed for many platforms.
+ 
+Main features are: 
+- modular: a lightweight core with plugins around
+- multi-protocols: IRC and Jabber (other soon)
+- extensible: C plugins and scripts (Perl, Python, Ruby, Lua and Tcl)
+- free software: released under GPLv3 license
+- fully documented: user's guide, API, FAQ,.. translated in many languages 
 
-Main features are:
-  - multi-servers connection
-  - many GUI (Graphical User Interface): Curses, Gtk and Qt
-  - small, fast and light
-  - customizable and extensible with scripts
-  - compliant with RFCs 1459, 2810, 2811, 2812, and 2813
-  - multi-platform (Gnu/Linux, *BSD, Windows and other)
-  - 100% GPL, free software
+%post
+%_install_info %{name}.info
 
-Install %{name}-gtk to have the gtk-gui.
+%preun
+%_remove_install_info %{name}.info
 
-%files -f %{name}.lang
-%{_bindir}/%{name}
-%{_bindir}/%{name}-curses
-%{_libdir}/alias.so*
-%{_libdir}/fifo.so*
-%{_libdir}/irc.so*
-%{_libdir}/logger.so*
-%{_libdir}/xfer.so*
-
-#--------------------------------------------------------------------
-
-%if %weegtk
-%package gtk
-Group:		Networking/IRC
-Summary:	Wee Enhanced Environment for Chat (With GTK)
-Requires:	%{name} = %{version}
-
-%description gtk
-WeeChat (Wee Enhanced Environment for Chat) is a free IRC client, fast and
-light, designed for many operating systems.
-
-Main features are:
-  - multi-servers connection
-  - many GUI (Graphical User Interface): Curses, Gtk and Qt
-  - small, fast and light
-  - customizable and extensible with scripts
-  - compliant with RFCs 1459, 2810, 2811, 2812, and 2813
-  - multi-platform (Gnu/Linux, *BSD, Windows and other)
-  - 100% GPL, free software
-
-This package contain %{name}-gtk
-
-%files gtk
-%{_bindir}/%{name}-gtk
-%endif
+%files -f %name.lang
+%doc AUTHORS ChangeLog COPYING NEWS README
+%doc doc/en/weechat_faq.en.txt doc/en/weechat_quickstart.en.txt doc/en/weechat_scripting.en.txt
+%doc doc/en/weechat_user.en.txt
+%_bindir/%name
+%_bindir/%name-curses
+%_mandir/man1/weechat*
+%dir %_libdir/%{name}
+%dir %_libdir/%{name}/plugins
+%{_libdir}/%name/plugins/alias.so
+%{_libdir}/%name/plugins/fifo.so
+%{_libdir}/%name/plugins/irc.so
+%{_libdir}/%name/plugins/logger.so
+%{_libdir}/%name/plugins/relay.so
+%{_libdir}/%name/plugins/rmodifier.so
+%{_libdir}/%name/plugins/xfer.so
+%{_libdir}/%name/plugins/script.so
 
 #--------------------------------------------------------------------
 
 %package perl
 Group:		Networking/IRC
-Summary:	Weechat perl plugins
-Requires:	%{name} = %{version}
+Summary: 	Weechat perl plugins
+Requires:	%name = %version
+Conflicts:	%name < 0.3.6
 
 %description perl
 This package allow weechat to use perl scripts
 
 %files perl
-%{_libdir}/perl.so*
+%{_libdir}/%name/plugins/perl.so
 
 #--------------------------------------------------------------------
 
 %package python
 Group:		Networking/IRC
 Summary:	Weechat python plugins
-Requires:	%{name} = %{version}
+Requires:	%name = %version
+Conflicts:	%name < 0.3.6
 
 %description python
 This package allow weechat to use python scripts
 
 %files python
-%{_libdir}/python.so*
+%{_libdir}/%name/plugins/python.so
 
 #--------------------------------------------------------------------
 
 %package tcl
 Group:		Networking/IRC
 Summary:	Weechat tcl plugins
-Requires:	%{name} = %{version}
+Requires:	%name = %version
+Conflicts:	%name < 0.3.6
 
 %description tcl
 This package allow weechat to use tcl scripts
 
 %files tcl
-%{_libdir}/tcl.so*
+%{_libdir}/%name/plugins/tcl.so
 
 #--------------------------------------------------------------------
 
 %package ruby
 Group:		Networking/IRC
 Summary:	Weechat ruby plugins
-Requires:	%{name} = %{version}
+Requires:	%name = %version
+Conflicts:	%name < 0.3.6
 
 %description ruby
 This package allow weechat to use ruby scripts
 
 %files ruby
-%{_libdir}/ruby.so*
+%{_libdir}/%name/plugins/ruby.so
 
 #--------------------------------------------------------------------
 
 %package lua
 Group:		Networking/IRC
 Summary:	Weechat lua plugins
-Requires:	%{name} = %{version}
+Requires:	%name = %version
+Conflicts:	%name < 0.3.6
 
 %description lua
 This package allow weechat to use lua scripts
 
 %files lua
-%{_libdir}/lua.so*
+%{_libdir}/%name/plugins/lua.so
 
 #--------------------------------------------------------------------
 
 %package charset
 Group:		Networking/IRC
 Summary:	Weechat charset plugins
-Requires:	%{name} = %{version}
+Requires:	%name = %version
+Conflicts:	%name < 0.3.6
 
 %description charset
 This package allow weechat to use charset
 
 %files charset
-%{_libdir}/charset.so*
+%{_libdir}/%name/plugins/charset.so
 
 #--------------------------------------------------------------------
-
+%if 0
 %package aspell
 Group:		Networking/IRC
-Summary:	Weechat aspell plugins
-Requires:	%{name} = %{version}
+Summary:	Weechat spell check plugins
+Requires:	%name = %version
+Conflicts:	%name < 0.3.6
 
 %description aspell
-This package allow weechat to use aspell
+This package allow weechat to use spell checker feature.
 
 %files aspell
-%{_libdir}/aspell.so*
-
-#--------------------------------------------------------------------
-
-%package relay
-Group:		Networking/IRC
-Summary:	Weechat IRC proxy plugin
-Requires:	%{name} = %{version}
-
-%description relay
-This package allows weechat to use an IRC proxy
-
-%files relay
-%{_libdir}/relay.so*
-
-#--------------------------------------------------------------------
-
-%package rmodifier
-Group:		Networking/IRC
-Summary:	Weechat IRC regex modifier plugin
-Requires:	%{name} = %{version}
-
-%description rmodifier
-alter modifier strings with regular expression
-
-%files rmodifier
-%{_libdir}/rmodifier.so*
+%{_libdir}/%name/plugins/aspell.so
+%endif
 
 #--------------------------------------------------------------------
 
 %package  devel
 Summary:	Development files for weechat
 Group:		Development/C
-Requires:	%{name} = %{version}-%{release} pkgconfig
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 WeeChat (Wee Enhanced Environment for Chat) is a portable, fast, light and
@@ -209,32 +179,25 @@ It is customizable and extensible with scripts.
 This package contains include files and pc file for weechat.
 
 %files devel
-%{_includedir}/weechat
-%{_libdir}/pkgconfig/weechat.pc
-%{_libdir}/*a
+%{_includedir}/%{name}
+%{_libdir}/pkgconfig/%{name}.pc
 
 #--------------------------------------------------------------------
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%configure2_5x	\
-%if %{weegtk}
-	--enable-gtk \
-%else
-	--disable-gtk \
-%endif
-
-%cmake
+%cmake -DLIBDIR=%{_libdir}
+%make
 
 %install
-%makeinstall
+%makeinstall_std -C build
 
 (
-cd %{buildroot}%{_bindir}
-ln -s %{name}-curses %{name}
+cd %buildroot%_bindir
+ln -s %name-curses %name
 )
 
-%find_lang %{name}
-
+%find_lang %name
