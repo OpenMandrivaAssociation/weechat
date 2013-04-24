@@ -41,8 +41,6 @@ Main features are:
 - free software: released under GPLv3 license
 - fully documented: user's guide, API, FAQ,.. translated in many languages 
 
-%post
-%_install_info %{name}.info
 
 %preun
 %_remove_install_info %{name}.info
