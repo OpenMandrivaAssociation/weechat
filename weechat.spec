@@ -1,6 +1,6 @@
 %define		name weechat
 %define 	version 0.3.9.2
-%define 	release %mkrel 1
+%define release  2
 
 Summary:	Portable, fast, light and extensible IRC client
 Name:		%{name}
