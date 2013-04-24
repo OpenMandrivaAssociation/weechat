@@ -42,8 +42,6 @@ Main features are:
 - fully documented: user's guide, API, FAQ,.. translated in many languages 
 
 
-%preun
-%_remove_install_info %{name}.info
 
 %files -f %name.lang
 %doc AUTHORS ChangeLog COPYING NEWS README
