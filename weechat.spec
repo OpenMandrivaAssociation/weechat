@@ -1,11 +1,7 @@
-%define		name weechat
-%define 	version 0.3.9.2
-%define release  2
-
 Summary:	Portable, fast, light and extensible IRC client
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		weechat
+Version:	0.3.9.2
+Release:	3
 Source0:	http://www.weechat.org/files/src/%{name}-%{version}.tar.bz2
 Patch0:		weechat-combined.patch
 License:	GPLv3
