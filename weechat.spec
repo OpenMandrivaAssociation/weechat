@@ -191,10 +191,10 @@ This package contains include files and pc file for weechat.
 
 %build
 %cmake -DLIBDIR=%{_libdir}
-%make
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 
 #(
 #cd %buildroot%_bindir
