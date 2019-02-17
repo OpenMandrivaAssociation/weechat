@@ -1,12 +1,13 @@
 Summary:	Portable, fast, light and extensible IRC client
 Name:		weechat
-Version:	0.3.9.2
-Release:	4
+Version:	2.4
+Release:	1
 Source0:	http://www.weechat.org/files/src/%{name}-%{version}.tar.bz2
 Patch0:		weechat-combined.patch
 License:	GPLv3
 Group: 		Networking/IRC
 Url: 		http://www.weechat.org/
+BuildRequires:  aspell-devel
 BuildRequires: 	cmake
 BuildRequires: 	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(libcurl)
@@ -16,7 +17,7 @@ BuildRequires: 	perl-devel
 # Ruby & Python are really needed for the build, tks lbd
 BuildRequires: 	pkgconfig(python)
 BuildRequires: 	ruby-devel
-Buildrequires: 	lua5.1-devel
+Buildrequires: 	pkgconfig(lua)
 BuildRequires: 	enchant-devel
 BuildRequires: 	gettext
 BuildRequires:	docbook-style-xsl
