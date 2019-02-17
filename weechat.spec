@@ -17,7 +17,9 @@ BuildRequires: 	perl-devel
 BuildRequires:  perl-ExtUtils-Embed
 BuildRequires:  php-devel
 # Ruby & Python are really needed for the build, tks lbd
-BuildRequires: 	pkgconfig(python)
+# Python2 is needed but use Python3 is possible but "NOT recommended because many \"official\" scripts won't work"
+# So stay for now with Python2 (penguin).
+BuildRequires: 	pkgconfig(python2)
 BuildRequires: 	ruby-devel
 Buildrequires: 	pkgconfig(lua)
 BuildRequires: 	enchant-devel
@@ -90,7 +92,7 @@ Conflicts:	%name < 0.3.6
 This package allow weechat to use python scripts
 
 %files python
-#{_libdir}/%name/plugins/python.so
+%{_libdir}/%name/plugins/python.so
 
 #--------------------------------------------------------------------
 
