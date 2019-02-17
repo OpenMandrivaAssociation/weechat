@@ -84,7 +84,7 @@ Conflicts:	%name < 0.3.6
 This package allow weechat to use python scripts
 
 %files python
-%{_libdir}/%name/plugins/python.so
+#{_libdir}/%name/plugins/python.so
 
 #--------------------------------------------------------------------
 
