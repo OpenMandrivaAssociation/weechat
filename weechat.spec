@@ -14,6 +14,8 @@ BuildRequires:	pkgconfig(libcurl)
 # need for utf8 support
 BuildRequires: 	ncursesw-devel
 BuildRequires: 	perl-devel
+BuildRequires:  perl-ExtUtils-Embed
+BuildRequires:  php-devel
 # Ruby & Python are really needed for the build, tks lbd
 BuildRequires: 	pkgconfig(python)
 BuildRequires: 	ruby-devel
