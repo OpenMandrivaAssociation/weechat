@@ -43,7 +43,7 @@ Main features are:
 
 
 %files -f %name.lang
-%doc *.html
+#doc *.html
 %_bindir/%name
 %_bindir/%name-curses
 #_mandir/man1/weechat*
