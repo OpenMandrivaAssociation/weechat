@@ -46,10 +46,14 @@ Main features are:
 #doc *.html
 %_bindir/%name
 %_bindir/%name-curses
+%{_bindir}/%{name}-headless
 #_mandir/man1/weechat*
 %dir %_libdir/%{name}
 %dir %_libdir/%{name}/plugins
 %{_libdir}/%name/plugins/alias.so
+%{_libdir}/%{name}/plugins/buflist.so
+%{_libdir}/%{name}/plugins/exec.so
+%{_libdir}/%{name}/plugins/fset.so
 %{_libdir}/%name/plugins/fifo.so
 %{_libdir}/%name/plugins/irc.so
 %{_libdir}/%name/plugins/logger.so
@@ -57,6 +61,8 @@ Main features are:
 #{_libdir}/%name/plugins/rmodifier.so
 %{_libdir}/%name/plugins/xfer.so
 %{_libdir}/%name/plugins/script.so
+%{_libdir}/%{name}/plugins/trigger.so
+%{_iconsdir}/hicolor/32x32/apps/%{name}.png
 
 #--------------------------------------------------------------------
 
@@ -143,7 +149,7 @@ This package allow weechat to use charset
 %{_libdir}/%name/plugins/charset.so
 
 #--------------------------------------------------------------------
-%if 0
+%if 1
 %package aspell
 Group:		Networking/IRC
 Summary:	Weechat spell check plugins
