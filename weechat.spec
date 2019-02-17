@@ -43,12 +43,10 @@ Main features are:
 
 
 %files -f %name.lang
-%doc AUTHORS ChangeLog COPYING NEWS README
-%doc doc/en/weechat_faq.en.txt doc/en/weechat_quickstart.en.txt doc/en/weechat_scripting.en.txt
-%doc doc/en/weechat_user.en.txt
+%doc *.html
 %_bindir/%name
 %_bindir/%name-curses
-%_mandir/man1/weechat*
+#_mandir/man1/weechat*
 %dir %_libdir/%{name}
 %dir %_libdir/%{name}/plugins
 %{_libdir}/%name/plugins/alias.so
@@ -56,7 +54,7 @@ Main features are:
 %{_libdir}/%name/plugins/irc.so
 %{_libdir}/%name/plugins/logger.so
 %{_libdir}/%name/plugins/relay.so
-%{_libdir}/%name/plugins/rmodifier.so
+#{_libdir}/%name/plugins/rmodifier.so
 %{_libdir}/%name/plugins/xfer.so
 %{_libdir}/%name/plugins/script.so
 
