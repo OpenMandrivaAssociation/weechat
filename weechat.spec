@@ -1,22 +1,27 @@
 Summary:	Portable, fast, light and extensible IRC client
 Name:		weechat
-Version:	0.3.9.2
-Release:	4
+Version:	2.4
+Release:	1
 Source0:	http://www.weechat.org/files/src/%{name}-%{version}.tar.bz2
-Patch0:		weechat-combined.patch
+#Patch0:		weechat-combined.patch
 License:	GPLv3
 Group: 		Networking/IRC
 Url: 		http://www.weechat.org/
+BuildRequires:  aspell-devel
 BuildRequires: 	cmake
 BuildRequires: 	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(libcurl)
 # need for utf8 support
 BuildRequires: 	ncursesw-devel
 BuildRequires: 	perl-devel
+BuildRequires:  perl-ExtUtils-Embed
+BuildRequires:  php-devel
 # Ruby & Python are really needed for the build, tks lbd
-BuildRequires: 	pkgconfig(python)
+# Python2 is needed but use Python3 is possible but "NOT recommended because many \"official\" scripts won't work"
+# So stay for now with Python2 (penguin).
+BuildRequires: 	pkgconfig(python2)
 BuildRequires: 	ruby-devel
-Buildrequires: 	lua5.1-devel
+Buildrequires: 	pkgconfig(lua)
 BuildRequires: 	enchant-devel
 BuildRequires: 	gettext
 BuildRequires:	docbook-style-xsl
@@ -40,22 +45,26 @@ Main features are:
 
 
 %files -f %name.lang
-%doc AUTHORS ChangeLog COPYING NEWS README
-%doc doc/en/weechat_faq.en.txt doc/en/weechat_quickstart.en.txt doc/en/weechat_scripting.en.txt
-%doc doc/en/weechat_user.en.txt
+#doc *.html
 %_bindir/%name
 %_bindir/%name-curses
-%_mandir/man1/weechat*
+%{_bindir}/%{name}-headless
+#_mandir/man1/weechat*
 %dir %_libdir/%{name}
 %dir %_libdir/%{name}/plugins
 %{_libdir}/%name/plugins/alias.so
+%{_libdir}/%{name}/plugins/buflist.so
+%{_libdir}/%{name}/plugins/exec.so
+%{_libdir}/%{name}/plugins/fset.so
 %{_libdir}/%name/plugins/fifo.so
 %{_libdir}/%name/plugins/irc.so
 %{_libdir}/%name/plugins/logger.so
 %{_libdir}/%name/plugins/relay.so
-%{_libdir}/%name/plugins/rmodifier.so
+#{_libdir}/%name/plugins/rmodifier.so
 %{_libdir}/%name/plugins/xfer.so
 %{_libdir}/%name/plugins/script.so
+%{_libdir}/%{name}/plugins/trigger.so
+%{_iconsdir}/hicolor/32x32/apps/%{name}.png
 
 #--------------------------------------------------------------------
 
@@ -142,7 +151,7 @@ This package allow weechat to use charset
 %{_libdir}/%name/plugins/charset.so
 
 #--------------------------------------------------------------------
-%if 0
+%if 1
 %package aspell
 Group:		Networking/IRC
 Summary:	Weechat spell check plugins
@@ -178,18 +187,18 @@ This package contains include files and pc file for weechat.
 
 %prep
 %setup -q
-%patch0 -p1
+#patch0 -p1
 
 %build
 %cmake -DLIBDIR=%{_libdir}
-%make
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 
-(
-cd %buildroot%_bindir
-ln -s %name-curses %name
-)
+#(
+#cd %buildroot%_bindir
+#ln -s %name-curses %name
+#)
 
 %find_lang %name
