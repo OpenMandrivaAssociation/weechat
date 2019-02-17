@@ -190,9 +190,9 @@ This package contains include files and pc file for weechat.
 %install
 %makeinstall_std -C build
 
-(
-cd %buildroot%_bindir
-ln -s %name-curses %name
-)
+#(
+#cd %buildroot%_bindir
+#ln -s %name-curses %name
+#)
 
 %find_lang %name
