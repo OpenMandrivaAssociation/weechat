@@ -3,7 +3,7 @@ Name:		weechat
 Version:	2.4
 Release:	1
 Source0:	http://www.weechat.org/files/src/%{name}-%{version}.tar.bz2
-Patch0:		weechat-combined.patch
+#Patch0:		weechat-combined.patch
 License:	GPLv3
 Group: 		Networking/IRC
 Url: 		http://www.weechat.org/
@@ -179,7 +179,7 @@ This package contains include files and pc file for weechat.
 
 %prep
 %setup -q
-%patch0 -p1
+#patch0 -p1
 
 %build
 %cmake -DLIBDIR=%{_libdir}
