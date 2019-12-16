@@ -1,9 +1,8 @@
 Summary:	Portable, fast, light and extensible IRC client
 Name:		weechat
-Version:	2.4
+Version:	2.7
 Release:	1
 Source0:	http://www.weechat.org/files/src/%{name}-%{version}.tar.bz2
-#Patch0:		weechat-combined.patch
 License:	GPLv3
 Group: 		Networking/IRC
 Url: 		http://www.weechat.org/
@@ -42,14 +41,11 @@ Main features are:
 - free software: released under GPLv3 license
 - fully documented: user's guide, API, FAQ,.. translated in many languages 
 
-
-
 %files -f %name.lang
-#doc *.html
 %_bindir/%name
 %_bindir/%name-curses
 %{_bindir}/%{name}-headless
-#_mandir/man1/weechat*
+%{_datadir}/applications/%{name}.desktop
 %dir %_libdir/%{name}
 %dir %_libdir/%{name}/plugins
 %{_libdir}/%name/plugins/alias.so
@@ -60,7 +56,6 @@ Main features are:
 %{_libdir}/%name/plugins/irc.so
 %{_libdir}/%name/plugins/logger.so
 %{_libdir}/%name/plugins/relay.so
-#{_libdir}/%name/plugins/rmodifier.so
 %{_libdir}/%name/plugins/xfer.so
 %{_libdir}/%name/plugins/script.so
 %{_libdir}/%{name}/plugins/trigger.so
@@ -187,7 +182,6 @@ This package contains include files and pc file for weechat.
 
 %prep
 %setup -q
-#patch0 -p1
 
 %build
 %cmake -DLIBDIR=%{_libdir}
