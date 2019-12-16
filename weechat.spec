@@ -158,7 +158,7 @@ Conflicts:	%name < 0.3.6
 This package allow weechat to use spell checker feature.
 
 %files aspell
-%{_libdir}/%name/plugins/aspell.so
+#{_libdir}/%name/plugins/aspell.so
 %endif
 
 #--------------------------------------------------------------------
