@@ -21,10 +21,14 @@ BuildRequires: 	ruby-devel
 Buildrequires: 	pkgconfig(lua)
 BuildRequires: 	enchant-devel
 BuildRequires: 	gettext
-BuildRequires:	docbook-style-xsl
+BuildRequires:	 docbook-style-xsl
 BuildRequires: 	pkgconfig(gnutls)
-BuildRequires:	libgcrypt-devel
+BuildRequires:	 libgcrypt-devel
 BuildRequires: 	tcl-devel
+BuildRequires:  php-devel
+BuildRequires:  v8-devel
+BuildRequires:  pkgconfig(guile-2.2)
+BuildRequires:  pkgconfig(tk)
 
 Obsoletes:	%{name}-gtk
 
@@ -182,7 +186,8 @@ This package contains include files and pc file for weechat.
 %setup -q
 
 %build
-%cmake -DLIBDIR=%{_libdir}
+%cmake \
+       -DLIBDIR=%{_libdir}
 %make_build
 
 %install
