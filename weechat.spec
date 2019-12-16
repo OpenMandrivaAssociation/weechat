@@ -25,7 +25,6 @@ BuildRequires:	 docbook-style-xsl
 BuildRequires: 	pkgconfig(gnutls)
 BuildRequires:	 libgcrypt-devel
 BuildRequires: 	tcl-devel
-BuildRequires:  php-devel
 BuildRequires:  v8-devel
 BuildRequires:  pkgconfig(guile-2.2)
 BuildRequires:  pkgconfig(tk)
@@ -187,7 +186,8 @@ This package contains include files and pc file for weechat.
 
 %build
 %cmake \
-       -DLIBDIR=%{_libdir}
+       -DLIBDIR=%{_libdir} \
+       -DENABLE_PHP=OFF
 %make_build
 
 %install
