@@ -60,7 +60,7 @@ Main features are:
 %{_libdir}/%name/plugins/xfer.so
 %{_libdir}/%name/plugins/script.so
 %{_libdir}/%{name}/plugins/trigger.so
-%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+%{_iconsdir}/hicolor/*/apps/%{name}.png
 
 #--------------------------------------------------------------------
 
@@ -158,9 +158,20 @@ Conflicts:	%name < 0.3.6
 This package allow weechat to use spell checker feature.
 
 %files aspell
-#{_libdir}/%name/plugins/aspell.so
+%{_libdir}/%name/plugins/spell.so
 %endif
 
+#--------------------------------------------------------------------
+%package guile
+Group:          Networking/IRC
+Summary:        Weechat guile plugins
+Requires:       %{name} = %{version}
+
+%description guile
+This package allow weechat to use guile scripts
+
+%files guile
+%{_libdir}/%{name}/plugins/guile.so
 #--------------------------------------------------------------------
 
 %package  devel
