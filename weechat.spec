@@ -16,9 +16,7 @@ BuildRequires: 	perl-devel
 BuildRequires:  perl-ExtUtils-Embed
 BuildRequires:  php-devel
 # Ruby & Python are really needed for the build, tks lbd
-# Python2 is needed but use Python3 is possible but "NOT recommended because many \"official\" scripts won't work"
-# So stay for now with Python2 (penguin).
-BuildRequires: 	pkgconfig(python2)
+BuildRequires: 	pkgconfig(python)
 BuildRequires: 	ruby-devel
 Buildrequires: 	pkgconfig(lua)
 BuildRequires: 	enchant-devel
