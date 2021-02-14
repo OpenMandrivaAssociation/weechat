@@ -6,28 +6,29 @@ Source0:	http://www.weechat.org/files/src/%{name}-%{version}.tar.bz2
 License:	GPLv3
 Group: 		Networking/IRC
 Url: 		http://www.weechat.org/
-BuildRequires:  aspell-devel
-BuildRequires: 	cmake
-BuildRequires: 	pkgconfig(ncurses)
-BuildRequires:	pkgconfig(libcurl)
+BuildRequires: aspell-devel
+BuildRequires: cmake
+BuildRequires: pkgconfig(atomic_ops)
+BuildRequires: pkgconfig(ncurses)
+BuildRequires: pkgconfig(libcurl)
 # need for utf8 support
-BuildRequires: 	ncursesw-devel
-BuildRequires: 	perl-devel
-BuildRequires:  perl-ExtUtils-Embed
-BuildRequires:  php-devel
+BuildRequires: ncursesw-devel
+BuildRequires: perl-devel
+BuildRequires: perl-ExtUtils-Embed
+BuildRequires: php-devel
 # Ruby & Python are really needed for the build, tks lbd
-BuildRequires: 	pkgconfig(python)
-BuildRequires: 	ruby-devel
-Buildrequires: 	pkgconfig(lua)
-BuildRequires: 	enchant-devel
-BuildRequires: 	gettext
-BuildRequires:	 docbook-style-xsl
-BuildRequires: 	pkgconfig(gnutls)
-BuildRequires:	 libgcrypt-devel
-BuildRequires: 	tcl-devel
+BuildRequires: pkgconfig(python)
+BuildRequires: ruby-devel
+Buildrequires: pkgconfig(lua)
+BuildRequires: enchant-devel
+BuildRequires: gettext
+BuildRequires: docbook-style-xsl
+BuildRequires: pkgconfig(gnutls)
+BuildRequires: pkgconfig(libgcrypt)
+BuildRequires: tcl-devel
 #BuildRequires:  v8-devel
-BuildRequires:  pkgconfig(guile-2.2)
-BuildRequires:  pkgconfig(tk)
+BuildRequires: pkgconfig(guile-2.2)
+BuildRequires: pkgconfig(tk)
 
 Obsoletes:	%{name}-gtk
 
