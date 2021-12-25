@@ -58,6 +58,7 @@ Main features are:
 %{_libdir}/%name/plugins/irc.so
 %{_libdir}/%name/plugins/logger.so
 %{_libdir}/%name/plugins/relay.so
+%{_libdir}/%name/plugins/typing.so
 %{_libdir}/%name/plugins/xfer.so
 %{_libdir}/%name/plugins/script.so
 %{_libdir}/%{name}/plugins/trigger.so
