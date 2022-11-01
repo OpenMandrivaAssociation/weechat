@@ -199,6 +199,7 @@ This package contains include files and pc file for weechat.
 %setup -q
 
 %build
+export LDFLAGS="%{optflags} -lcurl"
 %cmake \
        -DLIBDIR=%{_libdir} \
        -DENABLE_PHP=OFF \
