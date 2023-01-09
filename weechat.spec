@@ -1,6 +1,6 @@
 Summary:	Portable, fast, light and extensible IRC client
 Name:		weechat
-Version:	3.7.1
+Version:	3.8
 Release:	1
 Source0:	http://www.weechat.org/files/src/%{name}-%{version}.tar.xz
 License:	GPLv3
