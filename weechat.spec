@@ -1,11 +1,11 @@
 Summary:	Portable, fast, light and extensible IRC client
 Name:		weechat
-Version:	4.2.1
+Version:	4.2.2
 Release:	1
-Source0:	http://www.weechat.org/files/src/%{name}-%{version}.tar.xz
+Source0:	https://www.weechat.org/files/src/%{name}-%{version}.tar.xz
 License:	GPLv3
 Group: 		Networking/IRC
-Url: 		http://www.weechat.org/
+Url: 		https://www.weechat.org/
 BuildRequires: aspell-devel
 BuildRequires: cmake
 BuildRequires: pkgconfig(atomic_ops)
