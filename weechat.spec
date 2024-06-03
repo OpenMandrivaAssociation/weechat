@@ -11,6 +11,7 @@ BuildRequires: cmake
 BuildRequires: pkgconfig(atomic_ops)
 BuildRequires: pkgconfig(ncurses)
 BuildRequires: pkgconfig(libcurl)
+BuildRequires: pkgconfig(libcjson)
 BuildRequires: pkgconfig(libzstd)
 # need for utf8 support
 BuildRequires: ncursesw-devel
